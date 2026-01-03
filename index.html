@@ -1,1 +1,43 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lio Chat Voice</title>
+  <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+</head>
+<body style="margin:0; padding:0;">
+  <div id="root"></div>
+
+  <script>
+    const appID = 1669517248;
+    const serverSecret = "7b024eeed56f9ce5980b67af457a06dd";
+    const roomID = "liochat_room";
+    const userID = Date.now().toString();
+    const userName = "Guest";
+
+    const kitToken =
+      ZegoUIKitPrebuilt.generateKitTokenForTest(
+        appID,
+        serverSecret,
+        roomID,
+        userID,
+        userName
+      );
+
+    const zp = ZegoUIKitPrebuilt.create(kitToken);
+
+    zp.joinRoom({
+      container: document.getElementById("root"),
+      scenario: {
+        mode: ZegoUIKitPrebuilt.LiveAudioRoom,
+      },
+      turnOnCameraWhenJoining: false,
+      showMyCameraToggleButton: false,
+      showTextChat: false,
+      showScreenSharingButton: false,
+      maxUsers: 12,
+    });
+  </script>
+</body>
+</html>
